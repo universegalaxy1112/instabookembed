@@ -1,0 +1,72 @@
+{
+  "version": "0.0.1",
+  "name": "instabookembed",
+  "description": "Instabook Embed JavaScript SDK",
+  "author": "Univ",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/universegalaxy1112/instabookembed.git"
+  },
+  "exports": {
+    ".": "./dist/instabook.es.mjs",
+    "./cjs": "./dist/instabook.cjs.js",
+    "./umd": "./dist/instabook.umd.js"
+  },
+  "main": "./dist/instabook.es.mjs",
+  "module": "./dist/instabook.es.mjs",
+  "types": "./dist/instabook.es.d.mts",
+  "keywords": [
+    "instabook",
+    "instabook-js",
+    "js-sdk",
+    "javascript-sdk",
+    "instabook-sdk"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-push": "yarn test --all --watchAll false"
+    }
+  },
+  "lint-staged": {
+    "*.ts": "eslint"
+  },
+  "scripts": {
+    "build": "yarn lint && yarn clean && rollup -c && tsc",
+    "dev": "rollup -c -w",
+    "test": "vitest",
+    "clean": "rimraf dist",
+    "lint": "eslint ./src --ext ts",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "^17.4.4",
+    "@rollup/plugin-commonjs": "^24.1.0",
+    "@rollup/plugin-json": "^6.0.0",
+    "@rollup/plugin-terser": "^0.4.3",
+    "@rollup/plugin-url": "^8.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
+    "@typescript-eslint/parser": "^5.58.0",
+    "dotenv": "^16.0.3",
+    "eslint": "^8.53.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "lint-staged": "13.2.1",
+    "rimraf": "^5.0.0",
+    "rollup": "^3.0.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-ts": "^3.0.0",
+    "rollup-plugin-typescript2": "^0.34.1",
+    "typescript": "5.0.4",
+    "vitest": "^0.34.1"
+  },
+  "bugs": {
+    "url": "https://github.com/universegalaxy1112/instabookembed/issues"
+  },
+  "homepage": "https://github.com/universegalaxy1112/instabookembed#readme",
+  "directories": {
+    "example": "examples"
+  }
+}

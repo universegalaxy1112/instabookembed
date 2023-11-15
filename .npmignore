@@ -1,0 +1,19 @@
+src
+tests
+messages
+.idea
+.github
+.husky
+.eslintignore
+.eslintrc
+.gitattributes
+
+rollup.config.mjs
+vite.config.ts
+tsconfig.json
+tsconfig.eslint.json
+
+# generated markdown previews
+README.html
+CHANGELOG.html
+LICENSE.html
