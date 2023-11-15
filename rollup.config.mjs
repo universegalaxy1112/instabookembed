@@ -29,7 +29,7 @@ function basePlugins() {
 }
 
 export default [
-    // ES bundle (the Instabook EmbedApi as default export + additional helper classes).
+    // ES bundle (the Instabook InstabookEmbed as default export + additional helper classes).
     {
         input: 'src/index.ts',
         output: [
@@ -57,9 +57,9 @@ export default [
         watch: { clearScreen: false },
     },
 
-    // UMD bundle (only the Instabook Embed EmbedApi as default export).
+    // UMD bundle (only the Instabook Embed InstabookEmbed as default export).
     {
-        input: 'src/EmbedApi.ts',
+        input: 'src/InstabookEmbed.ts',
         output: [
             {
                 name:      'InstabookEmbed',
@@ -73,9 +73,9 @@ export default [
         watch: { clearScreen: false },
     },
 
-    // CommonJS bundle (only the Instabook Embed EmbedApi as default export).
+    // CommonJS bundle (only the Instabook Embed InstabookEmbed as default export).
     {
-        input: 'src/EmbedApi.ts',
+        input: 'src/InstabookEmbed.ts',
         output: [
             {
                 name:      'InstabookEmbed',
@@ -93,9 +93,9 @@ export default [
     // @deprecated - kept only for backwards compatibility and will be removed in v1.0.0
     // !!!
     //
-    // Browser-friendly iife bundle (only the Instabook Embed EmbedApi as default export).
+    // Browser-friendly iife bundle (only the Instabook Embed InstabookEmbed as default export).
     {
-        input: 'src/EmbedApi.ts',
+        input: 'src/InstabookEmbed.ts',
         output: [
             {
                 name:      'InstabookEmbed',

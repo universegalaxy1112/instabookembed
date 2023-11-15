@@ -29,12 +29,12 @@ _OR if you are using ES modules:_
 ### React.js (via npm)
 
 ```sh
-npm install instabookembed --save
+npm install ibembed --save
 ```
 
 ```js
 // Using ES modules (default)
-import InstabookEmbed from 'instabookembed'
+import InstabookEmbed from 'ibembed'
 ```
 
 ## Usage
@@ -42,7 +42,7 @@ import InstabookEmbed from 'instabookembed'
 > The scheduler is designed to be fluid and will take full width and height of the container.
 
 ```js
-import InstabookEmbed from 'instabookembed';
+import InstabookEmbed from 'ibembed';
 
 const options = {
     id: 'id-to-element',

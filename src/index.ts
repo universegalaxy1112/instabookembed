@@ -1,5 +1,5 @@
-import EmbedApi from './EmbedApi';
+import InstabookEmbed from './InstabookEmbed';
 
-export * from './EmbedApi';
+export * from './InstabookEmbed';
 
-export default EmbedApi;
+export default InstabookEmbed;

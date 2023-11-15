@@ -1,4 +1,4 @@
-import EmbedApi from './EmbedApi';
-export * from './EmbedApi';
-export default EmbedApi;
+import InstabookEmbed from './InstabookEmbed';
+export * from './InstabookEmbed';
+export default InstabookEmbed;
 //# sourceMappingURL=index.js.map
