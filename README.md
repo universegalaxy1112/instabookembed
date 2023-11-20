@@ -30,8 +30,18 @@ _OR if you are using ES modules:_
 
 ```html
 <script src="https://unpkg.com/ibembed/dist/instabook.umd.js" type="text/javascript"></script>
+<script type="text/javascript">
+    const ibEmbed = new InstabookEmbed(options)
+    ...
+</script>
 
-<script src="https://unpkg.com/ibembed/dist/instabook.es.mjs" type="module"></script>
+Es module
+<script type="module">
+    import InstabookEmbed from 'https://unpkg.com/ibembed/dist/instabook.es.mjs'
+
+    const ibEmbed = new InstabookEmbed(options)
+    ...
+</script>
 ```
 
 ### Yarn
