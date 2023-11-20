@@ -26,16 +26,26 @@ _OR if you are using ES modules:_
 </script>
 ```
 
-### React.js (via npm)
+#### Minified JS
+
+```html
+<script src="https://unpkg.com/ibembed/dist/instabook.umd.js" type="text/javascript"></script>
+
+<script src="https://unpkg.com/ibembed/dist/instabook.es.mjs" type="module"></script>
+```
+
+### Yarn
+
+```sh
+yanr add ibembed
+```
+
+### Npm
 
 ```sh
 npm install ibembed --save
 ```
 
-```js
-// Using ES modules (default)
-import InstabookEmbed from 'ibembed'
-```
 
 ## Usage
 
@@ -62,7 +72,7 @@ const onReady = function() {
 // listen to events.
 ibEmbed.addEventListener('iframe:ready', onReady);
 
-ibEmbed.removeEventListener('iframe:resize', onReady);
+ibEmbed.removeEventListener('iframe:ready', onReady);
 
 ...later
 
@@ -76,15 +86,12 @@ ibEmbed.reset(); // destroy the iframe.
 
 ### Instance options
 
-| Option       | Type        | Required | Default | Description                                                                                                                              |
-|:-------------|:------------|----------|---------|:-----------------------------------------------------------------------------------------------------------------------------------------|
-| `id`         | `string`    | Yes      |         | reload the scheduler                                                                                                                     |
-| `businessID` | `string`    | Yes      |         | Business Identifier                                                                                                                      |
-| `showLoader` | `boolean`   | No       | false   | Determines if loader element will be shown or not. Loader element should be inside the iframe container with class name ib-iframe-loader |
-| `fitContent` | `boolean`   | No       | false   | Automatically resize the container to fit the content                                                                                    |
-| `locale`     | `string`    | No       |         | todo                                                                                                                                     |
-| `appearance` | `string`    | No       |         | todo                                                                                                                                     |
-| `customCss`  | `array`     | No       |         | todo                                                                                                                                     |
+| Option       | Type        | Required | Default  | Description                                                                                                                                 |
+|:-------------|:------------|----------|----------|:--------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`         | `string`    | Yes      |          | reload the scheduler                                                                                                                        |
+| `businessID` | `string`    | Yes      |          | Business Identifier                                                                                                                         |
+| `showLoader` | `boolean`   | No       | false    | Determines if loader element will be shown or not. Loader element should be inside the iframe container with class name ib-iframe-loader    |
+| `fitContent` | `boolean`   | No       | false    | Automatically resize the container to fit the content                                                                                       |
 
 ### Instance methods
 
@@ -93,8 +100,6 @@ ibEmbed.reset(); // destroy the iframe.
 | `addEventListener`    | attaches a function that will be called whenever specified event is delivered. |
 | `removeEventListener` | removes an event listener previously registered with addEventListener          |
 | `reset`               | Reset the iframe element                                                       |
-| `get something`       | todo                                                                           |
-| `do something`        | todo                                                                           |
 
 ### Instance events
 

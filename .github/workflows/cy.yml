@@ -20,6 +20,7 @@ permissions:
   repository-projects: read
   security-events: read
   statuses: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,28 +28,27 @@ jobs:
       name: build
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: ['16']
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Use Node Version ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          registry-url: 'https://registry.npmjs.org'
-          node-version: ${{ matrix.node-version }}
+          node-version: '16'
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+        run: echo "DIR=$(yarn cache dir)" >> $GITHUB_ENV
 
-      - uses: actions/cache@v2
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+      - uses: actions/cache@v3
+        id: yarn-cache
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          path: ${{ env.DIR }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         name: Cache node_modules
         id: cache-node-modules
         with:
@@ -56,12 +56,14 @@ jobs:
           key: ${{ runner.os }}-${{ matrix.node-version }}-nodemodules-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-${{ matrix.node-version }}-nodemodules-
+
       - name: Install Dependencies
         run: yarn --frozen-lockfile
-        if: steps.cache-yarn-cache.outputs.cache-hit != 'true' || steps.cache-node-modules.outputs.cache-hit != 'true'
+        if: steps.yarn-cache.outputs.cache-hit != 'true' || steps.cache-node-modules.outputs.cache-hit != 'true'
 
       - name: Unit tests
         run: yarn test
+
   release:
     runs-on: ubuntu-latest
     environment:
@@ -69,34 +71,33 @@ jobs:
     if: contains(github.ref, 'tag')
     needs: build
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-    - name: Use Node Version 16.x
-      uses: actions/setup-node@v1
-      with:
-        registry-url: 'https://registry.npmjs.org'
-        node-version: '16.x'
+      - name: Use Node Version 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
 
-    - name: Get yarn cache directory path
-      id: yarn-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "DIR=$(yarn cache dir)" >> $GITHUB_ENV
 
-    - uses: actions/cache@v2
-      id: yarn-cache
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
+      - uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: ${{ env.DIR }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
-    - name: Install Dependencies
-      run: yarn --frozen-lockfile
-      if: steps.cache-yarn-cache.outputs.cache-hit != 'true' || steps.cache-node-modules.outputs.cache-hit != 'true'
+      - name: Install Dependencies
+        run: yarn --frozen-lockfile
+        if: steps.yarn-cache.outputs.cache-hit != 'true' || steps.cache-node-modules.outputs.cache-hit != 'true'
 
-    - name: Build package
-      run: yarn build
+      - name: Build package
+        run: yarn build
 
-    - name: Publish package
-      run: npm publish --production #--access public
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish package
+        run: npm publish --production #--access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

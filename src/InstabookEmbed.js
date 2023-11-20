@@ -37,6 +37,7 @@ export default class InstabookEmbed extends EventTarget {
             throw Error('Container does not exist');
         }
         this.iframeId = id;
+        options.mode = options.mode || 'live';
         this.options = options;
         // Create the iframe
         this.createIframe(options.embedParams);
@@ -165,7 +166,8 @@ export default class InstabookEmbed extends EventTarget {
         if (location.port) {
             origin += ":".concat(location.port);
         }
-        const embedUrl = "https://instabook.io/version-test/e1/" +
+        const baseUrl = this.options.mode === 'test' ? 'https://instabook.io/version-test/e1/' : 'https://instabook.io/e1/';
+        const embedUrl = baseUrl +
             this.options.businessID +
             "?remoteEmbed=true&remoteHost=" +
             encodeURIComponent(origin) +
