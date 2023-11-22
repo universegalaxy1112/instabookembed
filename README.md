@@ -76,9 +76,6 @@ const ibEmbed = new InstabookEmbed(options)
 // initialize the widget
 ibEmbed.init();
 
-// reload the widget
-ibEmbed.reload();
-
 const onReady = function() {
     console.log('iframe is ready.');
 }
@@ -112,7 +109,7 @@ Replace "your-widget-container" with the actual ID or class of your widget conta
 
 | Option       | Type        | Required | Default  | Description                                                                                                                              |
 |:-------------|:------------|----------|----------|:-----------------------------------------------------------------------------------------------------------------------------------------|
-| `id`         | `string`    | Yes      |          | reload the widget                                                                                                                        |
+| `id`         | `string`    | Yes      |          | The widget container ID                                                                                                                  |
 | `businessID` | `string`    | Yes      |          | Business Identifier                                                                                                                      |
 | `showLoader` | `boolean`   | No       | false    | Determines if loader element will be shown or not. Loader element should be inside the iframe container with class name ib-iframe-loader |
 | `fitContent` | `boolean`   | No       | false    | Automatically resize the container to fit the content                                                                                    |
@@ -121,8 +118,8 @@ Replace "your-widget-container" with the actual ID or class of your widget conta
 
 | Method                | Description                                                                    |
 |:----------------------|:-------------------------------------------------------------------------------|
-| `addEventListener`    | attaches a function that will be called whenever specified event is delivered. |
-| `removeEventListener` | removes an event listener previously registered with addEventListener          |
+| `addEventListener`    | Attaches a function that will be called whenever specified event is delivered. |
+| `removeEventListener` | Removes an event listener previously registered with addEventListener          |
 | `reset`               | Reset the iframe element                                                       |
 
 ### Instance events
