@@ -89,8 +89,18 @@ ibEmbed.removeEventListener('iframe:ready', onReady);
 ibEmbed.reset(); // destroy the iframe.
 
 ```
-> More detailed API docs could be found in the [API documentation](https://instabook.io).
+To display a loading indicator while the scheduler is loading, insert a loading element with the ID 'ib-iframe-loader' into your container.
 
+```html
+<div id="your-scheduler-container">
+    <div id="ib-iframe-loader">
+        <!-- Your loading indicator content goes here -->
+        Loading...
+    </div>
+</div>
+```
+
+Replace "your-scheduler-container" with the actual ID or class of your scheduler container. Adjust the loading indicator content within the ib-iframe-loader div according to your design preferences.
 
 ## Definitions
 
