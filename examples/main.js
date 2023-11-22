@@ -9,6 +9,7 @@ function initialize() {
         fitContent: true,
         showLoader: true
     });
+    ibEmbed.init();
     ibEmbed.addEventListener('iframe:resize', function(data) {
         console.log('iframe resize:', data);
     })

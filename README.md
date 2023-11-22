@@ -59,7 +59,7 @@ npm install ibembed --save
 
 ## Usage
 
-> The scheduler is designed to be fluid and will take full width and height of the container.
+> The widget is designed to be fluid and will take full width and height of the container.
 
 ```js
 import InstabookEmbed from 'ibembed';
@@ -70,9 +70,13 @@ const options = {
     fitContent: true
 }
 
+// create a new widget
 const ibEmbed = new InstabookEmbed(options)
 
-// Initiate a reload workflow in the scheduler.
+// initialize the widget
+ibEmbed.init();
+
+// reload the widget
 ibEmbed.reload();
 
 const onReady = function() {
@@ -89,10 +93,10 @@ ibEmbed.removeEventListener('iframe:ready', onReady);
 ibEmbed.reset(); // destroy the iframe.
 
 ```
-To display a loading indicator while the scheduler is loading, insert a loading element with the ID 'ib-iframe-loader' into your container.
+To display a loading indicator while the widget is loading, insert a loading element with the ID 'ib-iframe-loader' into your container.
 
 ```html
-<div id="your-scheduler-container">
+<div id="your-widget-container">
     <div id="ib-iframe-loader">
         <!-- Your loading indicator content goes here -->
         Loading...
@@ -100,18 +104,18 @@ To display a loading indicator while the scheduler is loading, insert a loading 
 </div>
 ```
 
-Replace "your-scheduler-container" with the actual ID or class of your scheduler container. Adjust the loading indicator content within the ib-iframe-loader div according to your design preferences.
+Replace "your-widget-container" with the actual ID or class of your widget container. Adjust the loading indicator content within the ib-iframe-loader div according to your design preferences.
 
 ## Definitions
 
 ### Instance options
 
-| Option       | Type        | Required | Default  | Description                                                                                                                                 |
-|:-------------|:------------|----------|----------|:--------------------------------------------------------------------------------------------------------------------------------------------|
-| `id`         | `string`    | Yes      |          | reload the scheduler                                                                                                                        |
-| `businessID` | `string`    | Yes      |          | Business Identifier                                                                                                                         |
-| `showLoader` | `boolean`   | No       | false    | Determines if loader element will be shown or not. Loader element should be inside the iframe container with class name ib-iframe-loader    |
-| `fitContent` | `boolean`   | No       | false    | Automatically resize the container to fit the content                                                                                       |
+| Option       | Type        | Required | Default  | Description                                                                                                                              |
+|:-------------|:------------|----------|----------|:-----------------------------------------------------------------------------------------------------------------------------------------|
+| `id`         | `string`    | Yes      |          | reload the widget                                                                                                                        |
+| `businessID` | `string`    | Yes      |          | Business Identifier                                                                                                                      |
+| `showLoader` | `boolean`   | No       | false    | Determines if loader element will be shown or not. Loader element should be inside the iframe container with class name ib-iframe-loader |
+| `fitContent` | `boolean`   | No       | false    | Automatically resize the container to fit the content                                                                                    |
 
 ### Instance methods
 
@@ -123,30 +127,30 @@ Replace "your-scheduler-container" with the actual ID or class of your scheduler
 
 ### Instance events
 
-#### Scheduler Ready
-This event is called when the scheduler is ready for use. 
+#### Widget Ready
+This event is called when the widget is ready for use. 
 ```js
 ibEmbed.addEventListener('iframe:ready', function () {
   console.log('iframe:ready');
 });
 ```
-#### Scheduler Loaded
-This event is called when the scheduler is loaded into the iframe.
+#### Widget Loaded
+This event is called when the widget is loaded into the iframe.
 ```js
 ibEmbed.addEventListener('iframe:load', function () {
   console.log('iframe:load');
 });
 ```
-#### Scheduler Resized
-This event is called when the scheduler size is changed inside the iframe.
+#### Widget Resized
+This event is called when the widget size is changed inside the iframe.
 ```js
 ibEmbed.addEventListener('iframe:resize', function (data: IframeResizeType) {
   const height = data.height;
   console.log('The updated height is ' + height);
 });
 ```
-#### Scheduler Error
-This event is called when the iframe failed to load the scheduler
+#### Widget Error
+This event is called when the iframe failed to load the widget
 ```js
 ibEmbed.addEventListener('iframe:error', function (e) {
   console.log('error: ' + e);

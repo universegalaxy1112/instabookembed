@@ -32,6 +32,10 @@ export default class InstabookEmbed extends EventTarget {
     constructor(options: EmbedOption) {
         super();
         this.handleMessage = this.handleMessage.bind(this);
+        this.init = this.init.bind(this);
+        this.reload = this.reload.bind(this);
+        this.addEventListener = this.addEventListener.bind(this);
+        this.removeEventListener = this.removeEventListener.bind(this);
         if (!options) {
             throw Error('Options required');
         }
@@ -50,8 +54,12 @@ export default class InstabookEmbed extends EventTarget {
         options.mode = options.mode || 'live';
 
         this.options = options;
+
+    }
+
+    init () {
         // Create the iframe
-        this.createIframe(options.embedParams);
+        this.createIframe(this.options.embedParams);
     }
 
 
