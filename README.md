@@ -47,7 +47,7 @@ Es module
 ### Yarn
 
 ```sh
-yanr add ibembed
+yarn add ibembed
 ```
 
 ### Npm
