@@ -29,7 +29,7 @@ _OR if you are using ES modules:_
 #### Minified JS
 
 ```html
-<script src="https://unpkg.com/ibembed/dist/instabook.umd.js" type="text/javascript"></script>
+<script src="https://unpkg.com/ibembed@version/dist/instabook.umd.js" type="text/javascript"></script>
 <script type="text/javascript">
     const ibEmbed = new InstabookEmbed(options)
     ...
@@ -107,12 +107,13 @@ Replace "your-widget-container" with the actual ID or class of your widget conta
 
 ### Instance options
 
-| Option       | Type        | Required | Default  | Description                                                                                                                              |
-|:-------------|:------------|----------|----------|:-----------------------------------------------------------------------------------------------------------------------------------------|
-| `id`         | `string`    | Yes      |          | The widget container ID                                                                                                                  |
-| `businessID` | `string`    | Yes      |          | Business Identifier                                                                                                                      |
-| `showLoader` | `boolean`   | No       | false    | Determines if loader element will be shown or not. Loader element should be inside the iframe container with class name ib-iframe-loader |
-| `fitContent` | `boolean`   | No       | false    | Automatically resize the container to fit the content                                                                                    |
+| Option       | Type        | Required | Default | Description                                                                                                                              |
+|:-------------|:------------|----------|---------|:-----------------------------------------------------------------------------------------------------------------------------------------|
+| `id`         | `string`    | Yes      |         | The widget container ID                                                                                                                  |
+| `businessID` | `string`    | Yes      |         | Business Identifier                                                                                                                      |
+| `version`    | `string`    | No       | live    | App Version                                                                                                                              |
+| `showLoader` | `boolean`   | No       | false   | Determines if loader element will be shown or not. Loader element should be inside the iframe container with class name ib-iframe-loader |
+| `fitContent` | `boolean`   | No       | false   | Automatically resize the container to fit the content                                                                                    |
 
 ### Instance methods
 

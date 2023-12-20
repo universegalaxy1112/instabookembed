@@ -4,7 +4,7 @@ export interface EmbedParams {
 
 export interface EmbedOption {
     id: string;
-    mode?: string;
+    version?: string;
     businessID: string;
     fitContent?: boolean;
     showLoader?: boolean;

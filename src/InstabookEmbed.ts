@@ -51,7 +51,7 @@ export default class InstabookEmbed extends EventTarget {
             throw Error('Container does not exist');
         }
         this.iframeId = id;
-        options.mode = options.mode || 'live';
+        options.version = options.version || 'live';
 
         this.options = options;
 
@@ -202,7 +202,7 @@ export default class InstabookEmbed extends EventTarget {
             origin += ":".concat(location.port);
         }
 
-        const baseUrl = this.options.mode === 'test' ? 'https://instabook.io/version-test/e1/' : 'https://instabook.io/e1/';
+        const baseUrl = this.options.version === 'live' ? 'https://instabook.io/e1/' : `https://instabook.io/version-${this.options.version}/e1/`;
 
         const embedUrl =
             baseUrl +
