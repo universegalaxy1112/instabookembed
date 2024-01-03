@@ -164,7 +164,7 @@ export default class InstabookEmbed extends EventTarget {
         if (this.options.fitContent) {
             debounce(300, (data: IframeResizeType) => {
                 if (this.isReady && this.iframeContainer && this.options.fitContent) {
-                    this.iframeContainer.style.height = `${data.height + 150}px`
+                    this.iframeContainer.style.height = `${data.height + 80}px`
                 }
             })(data);
         }

@@ -94,7 +94,7 @@ To display a loading indicator while the widget is loading, insert a loading ele
 
 ```html
 <div id="your-widget-container">
-    <div id="ib-iframe-loader">
+    <div class="ib-iframe-loader">
         <!-- Your loading indicator content goes here -->
         Loading...
     </div>
