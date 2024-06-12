@@ -152,13 +152,15 @@ export default class InstabookEmbed extends EventTarget {
             // Handle message parsing error
         }
     }
-    buildQueryString (params?: EmbedParams) {
-        let queryString = "";
+    buildQueryString ({ params,  origin }: { params?: EmbedParams, origin: string}) {
+        let queryString = "?remoteEmbed=true&remoteHost=" +
+            encodeURIComponent(origin);
         if (params) {
             for (const key in params) {
                 queryString += "&" + encodeURIComponent(key) + "=" + encodeURIComponent(params[key]);
             }
         }
+        queryString += `&t=${Date.now()}`
         return queryString;
     }
 
@@ -210,9 +212,7 @@ export default class InstabookEmbed extends EventTarget {
         const embedUrl =
             baseUrl +
             this.options.businessID +
-            "?remoteEmbed=true&remoteHost=" +
-            encodeURIComponent(origin) +
-            this.buildQueryString(embedParams);
+            this.buildQueryString({params: embedParams, origin});
 
         // Create the iframe element
         this.iframe = document.createElement("iframe");

@@ -129,13 +129,15 @@ export default class InstabookEmbed extends EventTarget {
             // Handle message parsing error
         }
     }
-    buildQueryString(params) {
-        let queryString = "";
+    buildQueryString({ params, origin }) {
+        let queryString = "?remoteEmbed=true&remoteHost=" +
+            encodeURIComponent(origin);
         if (params) {
             for (const key in params) {
                 queryString += "&" + encodeURIComponent(key) + "=" + encodeURIComponent(params[key]);
             }
         }
+        queryString += `&t=${Date.now()}`;
         return queryString;
     }
     onResize(data) {
@@ -178,9 +180,7 @@ export default class InstabookEmbed extends EventTarget {
         const baseUrl = this.options.version === 'live' ? 'https://instabook.io/e1/' : `https://instabook.io/version-${this.options.version}/e1/`;
         const embedUrl = baseUrl +
             this.options.businessID +
-            "?remoteEmbed=true&remoteHost=" +
-            encodeURIComponent(origin) +
-            this.buildQueryString(embedParams);
+            this.buildQueryString({ params: embedParams, origin });
         // Create the iframe element
         this.iframe = document.createElement("iframe");
         this.iframe.src = embedUrl;
