@@ -12,6 +12,7 @@ loaderStyle.textContent = `
             }
             .ib-iframe-container {
                 transition: height 0.5s ease;
+                position: relative;
             }
         `;
 document.head.appendChild(loaderStyle);
@@ -183,7 +184,7 @@ export default class InstabookEmbed extends EventTarget {
         this.iframe.src = embedUrl;
         this.iframe.allow = "fullscreen";
         this.iframe.scrolling = this.options.fitContent ? 'no' : 'yes';
-        this.iframe.setAttribute("style", "width: 100%; height: 100%; border: 0px;");
+        this.iframe.setAttribute("style", "width: 100%; height: 100%; border: 0px; position: absolute;");
         this.iframeContainer.classList.add('ib-iframe-container');
         this.iframeContainer.appendChild(this.iframe);
         this.loaderElement = this.iframeContainer.querySelector('.ib-iframe-loader');
