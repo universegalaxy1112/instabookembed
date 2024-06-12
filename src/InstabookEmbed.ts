@@ -11,10 +11,12 @@ loaderStyle.textContent = `
                 left: 50%;
                 top: 50%;
                 transform: translate(-50%,-50%);
+                z-index: 1;
             }
             .ib-iframe-container {
                 transition: height 0.5s ease;
                 position: relative;
+                min-height: 100%;
             }
         `;
 document.head.appendChild(loaderStyle);
