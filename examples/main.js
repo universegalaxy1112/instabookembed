@@ -6,7 +6,7 @@ function initialize() {
     ibEmbed= new InstabookEmbed({
         id: 'id-to-element',
         businessID: 'easytiger',
-        version: '5hjk',
+        version: 'test',
         fitContent: true,
         showLoader: true
     });
