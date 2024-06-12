@@ -122,6 +122,7 @@ export default class InstabookEmbed extends EventTarget {
 
 // Event handler for messages
     private handleMessage (event: MessageEvent) {
+        alert('handle event')
         if (!this.isReady) {
             return;
         }
@@ -232,6 +233,7 @@ export default class InstabookEmbed extends EventTarget {
         // Add message event listener
         window.removeEventListener("message", this.handleMessage, false);
         window.addEventListener("message", this.handleMessage, false);
+        alert('event add')
     }
 
     reset() {
